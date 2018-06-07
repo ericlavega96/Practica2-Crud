@@ -71,6 +71,7 @@ public class Main {
             attributes.put("titulo", "Visualizar Estudiante");
             attributes.put("encabezado", "Visualizar Estudiante");
             attributes.put("estudiante", estudiante);
+            attributes.put("idEstudiante",idEstudianteActual);
 
             return new ModelAndView(attributes, "visualizarEstudiante.ftl");
         }, freeMarkerEngine);
@@ -84,6 +85,7 @@ public class Main {
             attributes.put("titulo", "Editar Estudiante");
             attributes.put("encabezado", "Editar Estudiante");
             attributes.put("estudiante", estudiante);
+
 
             return new ModelAndView(attributes, "editarEstudiante.ftl");
         }, freeMarkerEngine);
@@ -110,9 +112,15 @@ public class Main {
             return "El estudiante ha sido editado satisfactoriamente";
         });
 
-        
+        get("/eliminarEstudiante/:id",(request, response) -> {
 
+            idEstudianteActual = request.params("id");
 
+            misEstudiantes.remove(Integer.parseInt(idEstudianteActual));
+
+            response.redirect("/listaEstudiantes");
+            return "El estudiante ha sido eliminado satisfactoriamente";
+        });
 
     }
 }

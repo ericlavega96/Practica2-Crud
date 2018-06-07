@@ -34,8 +34,8 @@
                     <td>${estudiante.nombre}</td>
                     <td>${estudiante.apellido}</td>
                     <td>${estudiante.telefono}</td>
-                    <td><a href="/inicio.ftl">Editar</td>
-                    <td><a href="/inicio.ftl">Eliminar</td>
+                    <td><a href="/editarEstudiante/${idEstudiante}">Editar</td>
+                    <td><a href="/eliminarEstudiante/${idEstudiante}">Eliminar</td>
                 </tr>
         </tr>
     </table>

@@ -41,7 +41,7 @@
                         <td>${estudiante.telefono}</td>
                         <td><a href="/visualizarEstudiante/${x}">Visualizar</td>
                         <td><a href="/editarEstudiante/${x}">Editar</td>
-                        <td><a href="/eliminar/${x}">Eliminar</td>
+                        <td><a href="/eliminarEstudiante/${x}">Eliminar</td>
                     </tr>
                     <#assign x++>
                 </#list>
