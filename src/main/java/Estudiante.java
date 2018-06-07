@@ -1,3 +1,4 @@
+// Clase POJO
 public class Estudiante {
 
     private int matricula;

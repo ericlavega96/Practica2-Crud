@@ -2,6 +2,11 @@
 <html>
     <head>
         <title>${titulo}</title>
+        <style>
+            button:hover{
+                background-color: lightgray;
+            }
+        </style>
     </head>
     <body>
         <#include "menuBar.ftl">

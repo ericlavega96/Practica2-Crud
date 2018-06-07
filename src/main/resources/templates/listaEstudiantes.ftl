@@ -18,6 +18,7 @@
             a{
                 text-align: center;
                 display: block;
+                text-decoration: none;
             }
 
         </style>
@@ -29,7 +30,7 @@
         </p>
         <table>
             <tr>
-                <th>Matricula</th><th>Nombre</th><th>Apellido</th><th>Telefono</th>
+                <th>Matricula</th><th>Nombre</th><th>Apellido</th><th>Teléfono</th>
             </tr>
             <tr>
                 <#assign x = 0>

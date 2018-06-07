@@ -25,6 +25,9 @@
                 text-align: center;
                 color: black;
             }
+            li a:hover{
+                color:whitesmoke;
+            }
         </style>
     </head>
     <body>
@@ -36,5 +39,6 @@
                 <li><a href="/listaEstudiantes">Lista de Estudiantes</a></li>
             </ul>
         </div>
+    <br>
     </body>
 </html>

@@ -2,6 +2,11 @@
 <html>
     <head>
         <title>${titulo}</title>
+        <style>
+            button:hover{
+                background-color: lightgray;
+            }
+        </style>
     </head>
     <body>
         <#include "menuBar.ftl">
@@ -19,7 +24,7 @@
             <input name="apellido" type="text">
             <br>
             <br>
-             Telefono:<br>
+             Teléfono:<br>
             <input name="telefono" type="text">
             <br>
             <br>

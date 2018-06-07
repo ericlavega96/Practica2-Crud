@@ -59,7 +59,7 @@ public class Main {
                     } catch (Exception e) {
                         System.out.println("Error al crear el estudiante " + e.toString());
                     }
-                    return "El estudiante ha sido agregado satisfactoriamente";
+                    return "";
         });
 
         get("/visualizarEstudiante/:id", (request, response) -> {
@@ -109,7 +109,7 @@ public class Main {
             } catch (Exception e) {
                 System.out.println("Error al crear el estudiante " + e.toString());
             }
-            return "El estudiante ha sido editado satisfactoriamente";
+            return "";
         });
 
         get("/eliminarEstudiante/:id",(request, response) -> {
@@ -119,7 +119,7 @@ public class Main {
             misEstudiantes.remove(Integer.parseInt(idEstudianteActual));
 
             response.redirect("/listaEstudiantes");
-            return "El estudiante ha sido eliminado satisfactoriamente";
+            return "";
         });
 
     }
