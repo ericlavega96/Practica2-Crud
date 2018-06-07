@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Agregar estudiante</title>
+    <title>${titulo}</title>
 </head>
 <body>
     <#include "/menuBar.ftl">
-    <form action="/agregarEstudiante" method="post">
+    <form action="/procesarEstudiante" method="post">
         <br>
          Matricula:<br>
         <input name="matricula" type="number"/>
@@ -23,7 +23,7 @@
         <input name="telefono" type="text"/>
         <br>
         <br>
-        <button name="Enviar" type="submit">Enviar</button>
+        <button name="agregarEstudianteButton" type="submit">Agregar Estudiante</button>
     </form>
 </body>
 </html>

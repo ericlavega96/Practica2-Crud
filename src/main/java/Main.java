@@ -41,23 +41,23 @@ public class Main {
         get("/listaEstudiantes", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("titulo", "Lista de Estudiantes");
-            attributes.put("encabezado", "Listado de Estudiantes");
+            attributes.put("encabezado", "Lista de Estudiantes");
+            attributes.put("listaEstudiantes",misEstudiantes);
             return new ModelAndView(attributes, "listaEstudiantes.ftl");
         }, freeMarkerEngine);
 
         post("/procesarEstudiante", (request, response) -> {
-            try {
-                String matricula = request.queryParams("matricula");
-                String nombre = request.queryParams("nombre");
-                String apellido = request.queryParams("apellido");
-                String telefono = request.queryParams("telefono");
-                misEstudiantes.add(new Estudiante(Integer.parseInt(matricula.replaceAll("\\D", "")), nombre, apellido, telefono));
-                response.redirect("/agregarEstudiante");
-            }catch (Exception e){
-                System.out.println("Error al crear el estudiante " + e.toString());
-            }
-            return new ModelAndView("","listaEstudiantes.ftl");
-        }, freeMarkerEngine);
+                    try {
+                        String matricula = request.queryParams("matricula");
+                        String nombre = request.queryParams("nombre");
+                        String apellido = request.queryParams("apellido");
+                        String telefono = request.queryParams("telefono");
+                        misEstudiantes.add(new Estudiante(Integer.parseInt(matricula.replaceAll("\\D", "")), nombre, apellido, telefono));
+                    } catch (Exception e) {
+                        System.out.println("Error al crear el estudiante " + e.toString());
+                    }
+                    return "El estudiante ha sido agregado satisfactoriamente";
+                });
 
         /**
          * Formulario estudiante

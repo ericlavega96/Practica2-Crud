@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Agregar estudiante</title>
+    <title>${titulo}</title>
 </head>
 <body>
     <#include "/menuBar.ftl">
-    <form action="/agregarEstudiante" method="post">
-        <br>
-         Matricula:<br>
-        <input name="matricula" type="number"/>
-        <br>
-        <br>
-         Nombre:<br>
-        <input name="nombre" type="text"/>
-        <br>
-        <br>
-         Apellido:<br>
-        <input name="apellido" type="text"/>
-        <br>
-        <br>
-         Telefono:<br>
-        <input name="telefono" type="text"/>
-        <br>
-        <br>
-        <button name="Enviar" type="submit">Enviar</button>
-    </form>
+    <p>
+        Cantidad de estudiantes: ${listaEstudiantes?size}
+    </p>
+    <table>
+        <tr>
+            <th>Matricula</th><th>Nombre</th><th>Apellido</th><th>Telefono</th>
+        </tr>
+        <tr>
+            <#list listaEstudiantes as estudiante>
+                <tr>
+                    <td>${estudiante.matricula?string["0"]}</td>
+                    <td>${estudiante.nombre}</td>
+                    <td>${estudiante.apellido}</td>
+                    <td>${estudiante.telefono}</td>
+                </tr>
+            </#list>
+        </tr>
+    </table>
 </body>
 </html>
