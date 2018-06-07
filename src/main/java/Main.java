@@ -16,6 +16,8 @@ public class Main {
 
     private static ArrayList<Estudiante> misEstudiantes = new ArrayList<Estudiante>();
 
+    private static String idEstudianteActual;
+
     public static void main(String[] args) {
 
         staticFiles.location("/templates");
@@ -53,45 +55,64 @@ public class Main {
                         String apellido = request.queryParams("apellido");
                         String telefono = request.queryParams("telefono");
                         misEstudiantes.add(new Estudiante(Integer.parseInt(matricula.replaceAll("\\D", "")), nombre, apellido, telefono));
+                        response.redirect("/listaEstudiantes");
                     } catch (Exception e) {
                         System.out.println("Error al crear el estudiante " + e.toString());
                     }
                     return "El estudiante ha sido agregado satisfactoriamente";
-                });
+        });
 
-        /**
-         * Formulario estudiante
-         * http://localhost:4567/agregarEstudiante/
-         *
-         *
-         *
-         * post("/agregarEstudiante", (request, response) -> {
-         try {
-         String matricula = request.queryParams("matricula");
-         String nombre = request.queryParams("nombre");
-         String apellido = request.queryParams("apellido");
-         String telefono = request.queryParams("telefono");
-         misEstudiantes.add(new Estudiante(Integer.parseInt(matricula.replaceAll("\\D", "")), nombre, apellido, telefono));
-         response.redirect("/agregarEstudiante");
-         }catch (Exception e){
-         System.out.println("Error al crear estudiante");
-         }
+        get("/visualizarEstudiante/:id", (request, response) -> {
+
+            idEstudianteActual = request.params("id");
+            Estudiante estudiante = misEstudiantes.get(Integer.parseInt(idEstudianteActual));
+
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("titulo", "Visualizar Estudiante");
+            attributes.put("encabezado", "Visualizar Estudiante");
+            attributes.put("estudiante", estudiante);
+
+            return new ModelAndView(attributes, "visualizarEstudiante.ftl");
+        }, freeMarkerEngine);
+
+        get("/editarEstudiante/:id", (request, response) -> {
+
+            idEstudianteActual = request.params("id");
+            Estudiante estudiante = misEstudiantes.get(Integer.parseInt(idEstudianteActual));
+
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("titulo", "Editar Estudiante");
+            attributes.put("encabezado", "Editar Estudiante");
+            attributes.put("estudiante", estudiante);
+
+            return new ModelAndView(attributes, "editarEstudiante.ftl");
+        }, freeMarkerEngine);
+
+        post("/salvarEstudianteEditado", (request, response) -> {
+            try {
+
+                Estudiante estudianteEditado = misEstudiantes.get(Integer.parseInt(idEstudianteActual));
+
+                String matricula = request.queryParams("matricula");
+                String nombre = request.queryParams("nombre");
+                String apellido = request.queryParams("apellido");
+                String telefono = request.queryParams("telefono");
+
+                estudianteEditado.setMatricula(Integer.parseInt(matricula));
+                estudianteEditado.setNombre(nombre);
+                estudianteEditado.setApellido(apellido);
+                estudianteEditado.setTelefono(telefono);
+
+                response.redirect("/listaEstudiantes");
+            } catch (Exception e) {
+                System.out.println("Error al crear el estudiante " + e.toString());
+            }
+            return "El estudiante ha sido editado satisfactoriamente";
+        });
+
+        
 
 
-         Map<String, Object> attributes = new HashMap<>();
-         attributes.put("titulo", "Formulario Agregar Estudiante");
-         return new ModelAndView(attributes, "agregarEstudiante.ftl");
-         }, freeMarkerEngine);
 
-         }
-
-         public static void ImprimirEstudiantes(){
-         System.out.println("Hay " + misEstudiantes.size() + " estudiantes");
-         for (Estudiante est: misEstudiantes) {
-         System.out.println("Matricula" + est.getMatricula() + "Nombre: " + est.getNombre() + "Apellido: " + est.getApellido() + "Telefono: " + est.getTelefono());
-         }
-         }
-         *
-         */
     }
 }
