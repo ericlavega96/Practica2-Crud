@@ -29,7 +29,7 @@ public class Main {
         get("/inicio", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("titulo", "Inicio");
-            attributes.put("encabezado", "Bienvenido al gestor estudiantil");
+            attributes.put("encabezado", "Bienvenido al Gestor Estudiantil");
             return new ModelAndView(attributes, "inicio.ftl");
         }, freeMarkerEngine);
 
